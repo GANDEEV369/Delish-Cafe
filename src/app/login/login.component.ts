@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +10,26 @@ import { UserService } from '../user.service';
 })
 export class LoginComponent implements OnInit{
   cus: any;
-  constructor(private router: Router, private service: UserService) {    
+  customer: any;
+  branches: any;
+  countries: any;
+  showLoginModal = true;
+  showRegisterModal = true;
+  constructor(private router: Router, private service: UserService, private toastr: ToastrService) { 
+       
   }
   ngOnInit(){
   }
+  signup() {
+    // jQuery('#register').modal('show');
+    // this.showRegisterModal = true;
+    this.router.navigate(['/register']);
+  }
+
   async loginSubmit(loginForm: any) {
     this.cus = null;
     localStorage.setItem("emailId", loginForm.emailId);
+    
   
     if(loginForm.emailId === "HR" && loginForm.password === "HR") {
       this.service.setLoginStatus();
@@ -29,9 +43,11 @@ export class LoginComponent implements OnInit{
 
       if (this.cus != null) {        
         this.service.setLoginStatus();
-        this.router.navigate(['products']);
+        this.router.navigate(['home']);
+        this.toastr.success('Login successful', 'Success');
       } else {
-        alert('Invalid Credentials');
+        // alert('Invalid Credentials'); normal alert message
+        this.toastr.error('Invalid Credentials', 'Error');
       }
     }
   }

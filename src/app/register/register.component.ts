@@ -1,22 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { UserService } from '../user.service';
-
-declare var jQuery: any;
-
+import { Router } from '@angular/router';
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   cus: any;
   customer: any;
   branches: any;
   countries: any;
-  showLoginModal = false;
-  showRegisterModal = false;
-
+  showLoginModal = true;
+  showRegisterModal = true;
+  
+  // ... (other necessary properties)
   getCurrentDate(): string {
     const today = new Date();
     const year = today.getFullYear();
@@ -24,7 +22,8 @@ export class HeaderComponent implements OnInit {
     const day = ('0' + today.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
-  constructor(private router: Router, private service: UserService) {
+
+  constructor(private service: UserService , private router: Router) {
     this.customer = {
       cusId: '',
       cusName: '',
@@ -37,50 +36,19 @@ export class HeaderComponent implements OnInit {
         branchId: ''
       }
     };
-    this.showLoginModal = false;
-    this.showRegisterModal = false;
   }
+
   ngOnInit() {
+    // ... (initialize properties if needed)
     this.service.getAllCountries().subscribe((data: any) => { this.countries = data; });
     this.service.getBranches().subscribe((data: any) => { this.branches = data; });
   }
   login() {
     // jQuery('#login').modal('show');
-    this.showLoginModal = true;
+    // this.showLoginModal = true;
     this.router.navigate(['/login']);
 
   }
-
-  signup() {
-    // jQuery('#register').modal('show');
-    this.showRegisterModal = true;
-    this.router.navigate(['/register']);
-  }
-
-  async loginSubmit(loginForm: any) {
-    this.cus = null;
-    localStorage.setItem('emailId', loginForm.emailId);
-
-    if (loginForm.emailId === 'HR' && loginForm.password === 'HR') {
-      this.service.setLoginStatus();
-      this.router.navigate(['showcustomers']);
-      this.showLoginModal = false;
-    } else {
-      await this.service.customerLogin(loginForm.emailId, loginForm.password).then((data: any) => {
-        console.log(data);
-        this.cus = data;
-      });
-
-      if (this.cus != null) {
-        this.service.setLoginStatus();
-        this.router.navigate(['menu']);
-        this.showLoginModal = false;
-      } else {
-        alert('Invalid Credentials');
-      }
-    }
-  }
-
   registerSubmit(regForm: any) {
 
     this.customer.cusId = regForm.cusId;
@@ -100,5 +68,3 @@ export class HeaderComponent implements OnInit {
     });
   }
 }
-
-
