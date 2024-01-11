@@ -12,27 +12,22 @@ import { UpcomingEventsComponent } from './upcoming-events/upcoming-events.compo
 import { ShowcustomersComponent } from './showcustomers/showcustomers.component';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { BrowseComponent } from './browse/browse.component';
-// import { RegisterComponent } from './register/register.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 const routes: Routes = [
-  // {path:'', component:LoginComponent}, 
   {path:'login', component:LoginComponent} ,
   {path:'browse',component:BrowseComponent},
   {path:'register', component:RegisterComponent},
   {path:'', component:HomeComponent},
   {path:'book-table',component:BookTableComponent},
   {path:'cart', component:CartComponent},
+  {path:'about', component:AboutusComponent},
   {path:'menu', component:MenuComponent},
   {path:'online-order',component:OnlineOrderComponent},
   {path:'parties',component:PartiesComponent},
   {path:'upcoming-events',component:UpcomingEventsComponent},
   {path:'forgotpassword',component:ForgotpasswordComponent},
   {path:'showcustomers', component:ShowcustomersComponent}
-  // {path:'cusbyid', component:ShowemployeebyidComponent}, 
-  // {path:'products', component:ProductsComponent},
-  // {path:'cart', component:CartComponent},
-  // {path:'logout', component:LogoutComponent} 
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
