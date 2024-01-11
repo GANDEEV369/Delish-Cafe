@@ -1,171 +1,52 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Navbar</a>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#"><img src="assets/images/Cafe.jpg" alt="Logo" style="height: 50px; width: 50px;"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link" (click)="home"><i class="fas fa-home"></i> Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#"><i class="fas fa-info-circle"></i> About</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Dropdown
+            <i class="fas fa-cog"></i> Services
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-laptop"></i> Web Development</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-mobile-alt"></i> Mobile Development</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
+            <a class="dropdown-item" href="#"><i class="fas fa-rocket"></i> Launch Your Project</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+          <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Contact</a>
         </li>
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search"></i> Search</button>
       </form>
-      <form class="nav-item">
-        <button class="btn btn-outline-success my-2 my-sm-0 " (click)="login()" >Login</button>
-        <button class="btn btn-outline-success my-2 my-sm-0 " (click)="signup()" >Register</button>
+
+      <form class="navbar-right">
+        <ng-container *ngIf="!service.getLoginStatus(); else loggedInTemplate">
+          <!-- Login and Register buttons -->
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="login()">
+            <i class="fas fa-user"></i> Login
+          </button>
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="signup()">
+            <i class="fas fa-user-plus"></i> Register
+          </button>
+        </ng-container>
+        <ng-template #loggedInTemplate>
+          <!-- Logout button -->
+          <button class="btn btn-outline-danger my-2 my-sm-0" (click)="logout()">
+            <i class="fas fa-sign-out-alt"></i> Logout
+          </button>
+        </ng-template>
       </form>
     </div>
   </nav>
-  
-
-  <!-- <div class="modal" id="login" tabindex="1" [class.show]="showLoginModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div>
-            <h5 class="modal-title" id="exampleModalLabel">
-              <span class="glyphicon glyphicon-log-in"></span> Login
-            </h5>
-          </div>
-          <button type="button" class="close" (click)="showLoginModal = false" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #loginForm="ngForm" (ngSubmit)="loginSubmit(loginForm.value)" novalidate>
-            <div class="form-group">
-              <label for="email">
-                <span class="glyphicon glyphicon-envelope"></span> Email:
-              </label>
-              <input type="text" class="form-control" id="email" name="emailId" ngModel #emailId="ngModel"
-                placeholder="Enter your email" required>
-            </div>
-            <div class="form-group">
-              <label for="loginPassword">
-                <span class="glyphicon glyphicon-lock"></span> Password:
-              </label>
-              <input type="password" class="form-control" id="loginPassword" name="password" ngModel #password="ngModel"
-                placeholder="Enter your password" required>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
-          <p>Don't have an account? <a (click)="showLoginModal = false; signup()">Register</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="modal" id="register" tabindex="-1" [class.show]="showRegisterModal">
-    <div class="modal-dialog modal-dialog-scrollable">
-      <div class="modal-content">
-        <div class="modal-header">
-          <div>
-            <h5 class="modal-title" id="exampleModalLabel">
-              <span class="glyphicon glyphicon-user"></span> Register
-            </h5>
-          </div>
-          <button type="button" class="close" (click)="showRegisterModal = false" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form #registerForm="ngForm" (ngSubmit)="registerSubmit(registerForm.value)" novalidate>
-            <div class="form-group">
-              <label for="cusId">
-                <span class="glyphicon glyphicon-info-sign"></span> CustomerId:
-              </label>
-              <input type="text" class="form-control" id="cusId" name="cusId" ngModel #cusId="ngModel"
-                placeholder="Enter CustomerId" required>
-            </div>
-            <div class="form-group">
-              <label for="cusName">
-                <span class="glyphicon glyphicon-user"></span> CustomerName:
-              </label>
-              <input type="text" class="form-control" id="cusName" name="cusName" ngModel #cusName="ngModel"
-                placeholder="Enter CustomerName" required>
-            </div>
-            <div class="form-group">
-              <label for="gender">
-                  <span class="glyphicon glyphicon-list-alt"></span> Gender:
-              </label>
-              <select class="form-control" id="gender" name="gender" ngModel required>
-                  <option value="" selected>Select Gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Others">Others</option>
-              </select>
-          </div>
-          
-          <div class="form-group">
-            <label for="doj">
-                <span class="glyphicon glyphicon-calendar"></span> DateOfJoin:
-            </label>
-            <input type="date" class="form-control" id="doj" name="doj" ngModel
-                [max]="getCurrentDate()" readonly required>
-          </div>
-          <div class="form-group">
-              <label for="country">
-                  <span class="glyphicon glyphicon-globe"></span> Country:
-              </label>
-              <select class="form-control" id="country" name="country" ngModel required>
-                  <option value="" selected>Select Country</option>
-                  <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}</option>
-              </select>
-          </div>
-          <div class="form-group">
-            <label for="branch">
-                <span class="glyphicon glyphicon-briefcase"></span> Branch:
-            </label>
-            <select class="form-control" id="branch" name="branch" ngModel required>
-                <option value="" selected>Select Branch</option>
-                <option value="{{branch.branchId}}" *ngFor="let branch of branches">{{branch.branchName}}</option>
-            </select>
-          </div>
-          <div class="form-group">
-              <label for="emailId">
-                  <span class="glyphicon glyphicon-envelope"></span> Email-Id:
-              </label>
-              <input type="text" class="form-control" id="emailId" name="emailId" ngModel #emailId="ngModel" placeholder="Enter your email" required>
-          </div>
-          <div class="form-group">
-              <label for="password">
-                  <span class="glyphicon glyphicon-lock"></span> Password:
-              </label>
-              <input type="password" class="form-control" id="password" name="password" ngModel #password="ngModel" placeholder="Enter your password" required>
-          </div>
-          <div class="form-group">
-              <label for="confirmPassword">
-                  <span class="glyphicon glyphicon-lock"></span> Confirm Password:
-              </label>
-              <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" ngModel #confirmPassword="ngModel" placeholder="Confirm your password" required>
-          </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button class="btn btn-primary" [disabled]="!registerForm.valid">Register</button>
-          <p>Already have an account? <a (click)="showRegisterModal = false; login()">Login</a></p>
-        </div>
-      </div>
-    </div>
-  </div> -->

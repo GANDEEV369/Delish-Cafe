@@ -1,0 +1,119 @@
+<!-- <head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head> -->
+
+
+<h3>Welcome {{emailId}}!</h3>
+<h1 align="center">Customers Data</h1>
+
+<div class="container">
+    <table class="table text-center table-hover table-striped table-bordered table-sm">
+        <thead>
+            <tr>
+                <th class="bg-info text-white text-center">CusId</th>
+                <th class="bg-info text-white text-center">CusName</th>
+                <th class="bg-info text-white text-center">Gender</th>
+                <th class="bg-info text-white text-center">Country</th>
+                <th class="bg-info text-white text-center">Phone Number</th>
+                <th class="bg-info text-white text-center">DOJ</th>
+                <th class="bg-info text-white text-center">EmailId</th>
+                <th class="bg-info text-white text-center" colspan="2">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cus of customers">
+                <td>{{cus.cusId}}</td>
+                <td>{{cus.cusName | gender: cus.gender | uppercase }}</td>
+                <td>{{cus.gender  | lowercase}}</td>
+                <td>{{cus.country}}</td>
+                <td>{{cus.phonenumber}}</td>
+                <td>{{cus.doj     | date:'dd-MMM-yyyy'}}</td>
+                <td>{{cus.emailId}}</td>
+                <td><button (click)="editCustomer(cus)"         class="glyphicon glyphicon-pencil"> </button></td>
+                <td><button (click)="deleteCustomer(cus.cusId)" class="glyphicon glyphicon-trash">  </button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+
+<div id="cusModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Update Customer</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <div class="modal-body">
+            <table align="center">
+                <tbody>
+                    <tr>
+                        <td>CusId</td>
+                        <td><input type="text" name="cusId" [(ngModel)]="customer.cusId" readonly /></td>
+                    </tr>
+                    <tr>
+                        <td>CusName</td>
+                        <td><input type="text" name="cusName" [(ngModel)]="customer.cusName"/></td>
+                    </tr>
+                    <tr>
+                        <td>Gender</td>
+                        <td>
+                            <select name="gender" [(ngModel)]="customer.gender">
+                                <option value="{{customer.gender}}" selected>{{customer.gender}}</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>DateOfJoin</td>
+                        <td><input type="date" name="doj" [(ngModel)]="customer.doj" /></td>
+                    </tr>
+                    <tr>
+                        <td>Country</td>
+                        <td>
+                            <select name="country" [(ngModel)]="customer.country">
+                                <option value="{{customer.country}}" selected>{{customer.country}}</option>
+                                <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Email-Id</td>
+                        <td><input type="text" name="emailId" [(ngModel)]="customer.emailId" readonly /></td>
+                    </tr>
+                    <!-- <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password" [(ngModel)]="customer.password" readonly /></td>
+                    </tr> -->
+                    <tr>
+                        <td>Branch</td>
+                        <td>
+                            <select name="branchId" [(ngModel)]="customer.branch.branchId">
+                                <option value="" selected>Select Branch</option>
+                                <option value="{{branch.branchId}}" *ngFor="let branch of branches">{{branch.branchName}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone Number</td>
+                        <td><input type="text" name="phonenumber" [(ngModel)]="customer.phonenumber" readonly /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" (click)="updateCustomer()" class="btn btn-secondary" data-dismiss="modal">Update Customer</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+

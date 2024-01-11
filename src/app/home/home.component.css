@@ -1,0 +1,201 @@
+  /* .row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1 * var(--bs-gutter-y));
+    margin-right: calc(-.5 * var(--bs-gutter-x));
+    margin-left: calc(-.5 * var(--bs-gutter-x));
+  } */
+
+  /* .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+  } */
+
+  .smallbox {
+    border: 2px solid white;
+    height: 120px;
+    width: 120px !important;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 10px rgb(213, 99, 99);
+    background-color: white;
+    /* padding:px; */
+  }
+
+  .smallbox h6 {
+    font-size: 16px;
+  }
+
+  .smallbox:hover {
+    background-image: linear-gradient(rgb(76, 163, 235), rgb(23, 66, 142));
+    border: linear-gradient(rgb(76, 163, 235), rgb(23, 66, 142));
+  }
+
+  .smallbox img {
+    width: 42px;
+  }
+
+  .buttonscroll {
+    background-color: rgb(137, 236, 236);
+    border-radius: 8px;
+    border: 1px solid lightblue;
+    margin-top: 5px;
+    margin-bottom: 5px;
+  }
+
+  #main-banner-slider .owl-prev {
+    position: absolute;
+    left: 50px;
+    color: #d3d3d3;
+    font-size: 45px;
+    background: transparent;
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+    border: none;
+    line-height: 0;
+    top: 36%;
+  }
+
+  #main-banner-slider .owl-next {
+    position: absolute;
+    right: 50px;
+    color: #d3d3d3;
+    font-size: 45px;
+    background: transparent;
+    height: 60px;
+    width: 60px;
+    border-radius: 100px;
+    border: none;
+    line-height: 0;
+    top: 36%;
+  }
+
+  .customtext {
+    position: absolute;
+    left: 0%;
+    top: 0.8rem;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    width: 90%;
+  }
+
+  @media (min-width: 1600px) and (max-width: 1920px) {
+    .customtext {
+      position: absolute;
+      left: -2%;
+      top: 12rem;
+    }
+  }
+
+  /* .col {
+    margin: 1px;
+    padding: 0;
+  } */
+  .col a h5 {
+    font-size: 16px;
+  }
+  .card-img {
+  width: auto;
+  height: auto;
+  }
+
+
+  .customtext h1 {
+    font-size: 32px;
+    color: #fff;
+    text-align: left;
+    font-weight: 600;
+  }
+
+  @media (min-width: 1600px) and (max-width: 1920px) {
+    .customtext h1 {
+      font-size: 32px;
+    }
+  }
+
+  .bannerright {}
+
+  @media (min-width: 1600px) and (max-width: 1920px) {
+    .bannerright {}
+  }
+
+  .owl-carousel.owl-drag .owl-item {
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+
+  .owl-carousel,
+  .owl-carousel .owl-item {
+    -webkit-tap-highlight-color: transparent;
+    position: relative;
+  }
+
+  img,
+  svg {
+    vertical-align: center;
+  }
+
+  button {
+    margin: 0;
+  }
+
+  .buttons {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* ... your existing styles ... */
+
+  .carousel-caption.customtext {
+    text-align: start;
+    padding: 2rem;
+    /* Adjust padding as needed */
+  }
+
+  .carousel-caption.customtext h1 {
+    font-size: 2rem;
+    /* Adjust font size as needed */
+  }
+
+  .carousel-caption.customtext p {
+    font-size: 1rem;
+    /* Adjust font size as needed */
+  }
+
+  .carousel-caption.customtext .btn {
+    font-size: 1rem;
+    /* Adjust font size as needed */
+    padding: 0.5rem 1rem;
+    /* Adjust padding as needed */
+  }
+
+  @media (max-width: 768px) {
+
+    .carousel-caption.customtext h1 {
+      font-size: 1.5rem;
+    }
+
+    .carousel-caption.customtext p {
+      font-size: 0.8rem;
+    }
+
+    .carousel-caption.customtext .btn {
+      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+    }
+  }

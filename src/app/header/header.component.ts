@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
     const day = ('0' + today.getDate()).slice(-2);
     return `${year}-${month}-${day}`;
   }
-  constructor(private router: Router, private service: UserService) {
+  constructor(private router: Router, public service: UserService) {
     this.customer = {
       cusId: '',
       cusName: '',
@@ -50,7 +50,38 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
 
   }
-
+  home(){
+    this.router.navigate(['/']);
+  }
+  about(){
+    this.router.navigate(['/about']);
+  }
+  contact(){
+    this.router.navigate(['/contact']);
+  }
+  bookTable(){
+    this.router.navigate(['/book-table']);
+  }
+  menu(){
+    this.router.navigate(['/menu']);
+  }
+  onlineOrder(){
+    this.router.navigate(['/online-order']);
+  }
+  cart(){
+    this.router.navigate(['/cart']);
+  }
+  logout() {
+    this.service.setLogoutStatus();
+    
+    this.router.navigate(['/']); // Redirect to home page after logout (adjust as needed)
+  }
+  parties(){
+    this.router.navigate(['/parties']);
+  }
+  upcomingEvents(){
+    this.router.navigate(['/upcoming-events']);
+  }
   signup() {
     // jQuery('#register').modal('show');
     this.showRegisterModal = true;
@@ -66,7 +97,7 @@ export class HeaderComponent implements OnInit {
       this.router.navigate(['showcustomers']);
       this.showLoginModal = false;
     } else {
-      await this.service.customerLogin(loginForm.emailId, loginForm.password).then((data: any) => {
+      await this.service.cusLogin(loginForm.emailId, loginForm.password).then((data: any) => {
         console.log(data);
         this.cus = data;
       });
@@ -90,7 +121,7 @@ export class HeaderComponent implements OnInit {
     this.customer.doj = regForm.doj;
     this.customer.emailId = regForm.emailId;
     this.customer.password = regForm.password;
-    this.customer.department.deptId = regForm.department;
+    this.customer.branch.branchId = regForm.branch;
 
     console.log(this.customer);
 

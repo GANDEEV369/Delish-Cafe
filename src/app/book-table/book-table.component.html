@@ -1,0 +1,88 @@
+<div class="modal" id="bookTable" tabindex="-1" [class.show]="showBookTableModal">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="bookTableModalLabel">Book Your Table</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #tabForm="ngForm" (ngSubmit)="bookTableSubmit(tabForm.value)" novalidate>
+                    <div class="form-group">
+                        <label for="cusName">
+                            <span class="glyphicon glyphicon-user"></span> CustomerName:
+                        </label>
+                        <input type="text" class="form-control" id="cusName" name="cusName" ngModel #cusName="ngModel"
+                            placeholder="Enter CustomerName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dob">
+                            <span class="glyphicon glyphicon-calendar"></span> Date Of Booking:
+                        </label>
+                        <input type="date" class="form-control" id="dob" name="dob" ngModel required>
+                    </div>
+                    <div class="form-group">
+                        <label for="startTime">
+                            <span class="glyphicon glyphicon-clock"></span> Start Time:
+                        </label>
+                        <input type="time" class="form-control" id="startTime" name="startTime" ngModel required
+                               [step]="15 * 60" min="09:00" max="18:00">
+                    </div>
+                    <div class="form-group">
+                        <label for="endTime">
+                            <span class="glyphicon glyphicon-clock"></span> End Time:
+                        </label>
+                        <input type="time" class="form-control" id="endTime" name="endTime" ngModel required
+                               [step]="15 * 60" min="09:00" max="18:00">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">
+                            <span class="glyphicon glyphicon-globe"></span> Country:
+                        </label>
+                        <select class="form-control" id="country" name="country" ngModel required>
+                            <option value="" selected>Select Country</option>
+                            <option value="{{country.cca3}}" *ngFor="let country of countries">{{country.name.common}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="branch">
+                            <span class="glyphicon glyphicon-briefcase"></span> Branch:
+                        </label>
+                        <select class="form-control" id="branch" name="branch" ngModel required>
+                            <option value="" selected>Select Branch</option>
+                            <option value="{{branch.branchId}}" *ngFor="let branch of branches">{{branch.branchName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="countryCode"></label>
+                        <select id="countryCode" name="countryCode" class="form-control"
+                            style="width: 49px; height: 39px; margin-right: 3px;" ngModel required>
+                            <option *ngFor="let country of countries" [value]="country.idd.root + country.idd.suffixes">
+                                {{ country.idd.root }}{{ country.idd.suffixes }}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="phonenumber">
+                            <span class="glyphicon glyphicon-phone"></span> Phone Number:
+                        </label>
+                        <input type="text" class="form-control" id="phonenumber" name="phonenumber" ngModel
+                            #phonenumber="ngModel" placeholder="Enter your phone number" required minlength="2"
+                            maxlength="10" />
+                    </div>
+                    <div class="form-group">
+                        <label for="emailId">
+                            <span class="glyphicon glyphicon-envelope"></span> Email-Id:
+                        </label>
+                        <input type="text" class="form-control" id="emailId" name="emailId" ngModel #emailId="ngModel"
+                            placeholder="Enter your email" required>
+                    </div>
+                    <button class="btn btn-primary" [disabled]="!tabForm.valid">Book</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
